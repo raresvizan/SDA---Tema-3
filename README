@@ -1,0 +1,60 @@
+VISAN Rares-Stefan - 312CC
+................................................................................
+Punctaj obtinut local: 120p
+Timp de lucru: 5 zile
+................................................................................
+Am creat structuri pentru: nodul unui graf - contine numarul nodului, adancimea
+pentru cerinta 2, numele locatiei pentru cerinta 1; muchia din graf - contine 
+costul muchiei si nodurile adiacente; graf - contine numarul de noduri si lista
+de adiacenta prin care este reprezentat.
+Functia init_graph() initializeaza graful, seteaza nr de noduri si listele NULL.
+Functiile insert_edge1() si insert_edge2() adauga muchie intre 2 noduri.
+Folosesc prima functie pentru cerinta1, deoarece trebuie sa ii atribui nodului
+si un nume. Folosesc a doua functie pentru cerinta2 care nu necesita nume.
+Functia read_data_task1() citeste datele de intrare ale cerintei 1. Fiecare zona
+citita este verificata daca a fost sau nu adaugata in graf pentru a nu avea mai
+multe noduri cu acelasi nume. Memorez in x si y nr nodurilor intre care trebuie
+inserat muchii. Graful este neorientat, deci adaug muchie x-y dar si y-x.
+Memorez intr-un vector de tip muchie, costul fiecarei muchii din graf.
+Functia dfs() executa algoritmul DFS pentru graful neorientat al cerintei 1.
+Folosesc aceasta functie in functia nr_conex_comp() pentru a stabili numarul de
+componente conexe ale grafului si afisez acest numar.
+Functia min_edge_cost() este apelata in algoritmul lui Prim pentru a afla nodul
+cu costul minim pana in acel moment. Aceasta returneaza valoarea nodului sau -1
+daca nu exista un astfel de nod. Totodata, prin variabila edge_cost intoarce 
+costul.
+Functia exist_edge() este apelata in algoritmul lui Prim pentru a afla daca
+exista muchie intre 2 noduri. Ea returneaza indicele muchiei din vectorul de
+muchii sau -1 daca nu exista.
+Functia total_cost_minim() face algoritmul lui Prim pentru a afla costul total
+al drumurilor ce trebuie reparate in fiecare componenta conexa din graf.
+Folosesc un vector visit[] pentru a marca nodurile prin care am trecut, cost[]
+in care calculez costul fiecarui nod si total_cost[] in care calculez costul
+drumurilor reparate. La final sortez crescator vectorul total_cost si il afisez.
+Functia read_data_task2() citeste datele de intrare ale cerintei 2. Consider
+Insula ca fiind nodul 1 si Corabie ultimul nod din graf. Restul nodurilor citite
+le consider dupa nume (Nod_x este nodul x). Inserez muchiile in graful orientat
+si memorez costul muchiilor in vectorul de muchii. Atribui nodurilor adancimile
+citite.
+Functia calculate_score() returneaza scorul muchiei dintre 2 noduri, calculat
+prin formula din cerinta sau 0 in cazul in care nu exista muchie x->y. Ea este
+apelata in cadrul algoritmului lui Dijkstra si intoarce prin variabila cost
+costul muchiei x->y.
+Functia dijkstra() face algorimul lui Dijkstra pornind de la un nod start, dat
+ca parametru si calculeaza cel mai bun drum intre nodul start si celelalte.
+Drumul este retinut in vectorul pr[] iar costul drumurilor in cost[].
+Functia print_path() parcurge recursiv vectorul pr[] rezultat pana gaseste 
+drumul dintre Insula si Corabie si il afiseaza. Totodata, in variabila depth
+gasesc adancimea minima a nodurilor parcurse.
+Functia resolve_task2() se ocupa de apelarea si afisarea tututor lucrurilor
+necesare cerintei 2. Initial, fac Dijkstra pentru a vedea daca exista sau nu
+un drum intre Corabie si Insula. Daca da, fac Dijkstra pentru a gasi un drum de
+la Insula la Corabie. Daca gasesc drum in ambele cazuri, afisez drumul gasit,
+costul acestuia, adancimea minima (adica greutatea maxima pe care o poate avea
+barca) si calculez cate drumuri trebuie facute pentru a cara toata comoara.
+Functia free_graph() parcurge fiecare lista de adiacenta si elibereaza memoria
+alocata fiecarui nod din graf.
+In main() deschid fisierele de intrare / iesire, citesc n - nr de noduri graf si
+m - nr de muchii din graf. Initializez graful si verific ce cerinta doresc sa
+rezolv. Pentru fiecare, apelez functiile necesare pentru a rezolva cerinta.
+Eliberez memoria alocata grafului si inchid fisierele.
